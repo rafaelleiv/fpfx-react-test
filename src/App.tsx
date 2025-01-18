@@ -10,7 +10,7 @@ export default function App() {
         </section>
 
         {/* Gráfico de resumen */}
-        <section className="mt-10 bg-secondary p-4 rounded-lg shadow-md">
+        <section className="mt-8 bg-secondary p-4 rounded-lg shadow-md">
           <Overview />
         </section>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
   useReactTable,
   flexRender,
@@ -15,8 +15,7 @@ import PaginationInfo from './PaginationInfo.tsx';
 import PaginationButtons from './PaginationButtons.tsx';
 import PaginationSizeOptions from './PaginationSizeOptions.tsx';
 import SortableHeader from './SortableTableHeader.tsx';
-
-const usersApiUrl = 'http://localhost:8000/users';
+import { useUserContext } from '../../context/useUserContext.ts';
 
 const defaultPaginationSize = 10;
 const paginationSizes = [5, 10, 15, 20];
@@ -30,62 +29,48 @@ const columns = [
     enableSorting: true,
   }),
   columnHelper.accessor(
-    (row: User) => {
-      const totalProfit = row.profit.reduce((acc, val) => acc + val, 0);
-      return `$${totalProfit.toLocaleString()}`;
-    },
+    (row: User) => `$${row.totalProfit?.toLocaleString()}`,
     {
       header: ({ column }) => <SortableHeader column={column} label="Profit" />,
-      id: 'profit',
+      id: 'totalProfit',
       enableSorting: true,
     }
   ),
   columnHelper.accessor(
-    (row: User) => {
-      const totalLoss = row.loss.reduce((acc, val) => acc + val, 0);
-      return `$${Math.abs(totalLoss).toLocaleString()}`;
-    },
+    (row: User) => `$${Math.abs(row.totalLoss as number).toLocaleString()}`,
     {
       header: ({ column }) => <SortableHeader column={column} label="Loss" />,
-      id: 'loss',
+      id: 'totalLoss',
       enableSorting: true,
     }
   ),
-  columnHelper.accessor(
-    (row: User) => {
-      return (
-        row.profit.reduce((acc, val) => acc + val, 0) +
-        row.loss.reduce((acc, val) => acc + val, 0)
-      );
-    },
-    {
-      header: ({ column }) => (
-        <SortableHeader column={column} label="Balance" />
-      ),
-      id: 'balance',
-      cell: (value) => (
-        <span
-          className={value.getValue() >= 0 ? 'text-positive' : 'text-negative'}
-        >
-          ${Math.abs(value.getValue()).toLocaleString()}
-        </span>
-      ),
-      enableSorting: true,
-      sortingFn: (rowA, rowB) => {
-        const balanceA = Math.abs(rowA.getValue<number>('balance'));
-        const balanceB = Math.abs(rowB.getValue<number>('balance'));
+  columnHelper.accessor((row: User) => row.balance, {
+    header: ({ column }) => <SortableHeader column={column} label="Balance" />,
+    id: 'balance',
+    cell: (value) => (
+      <span
+        className={
+          (value.getValue() as number) >= 0 ? 'text-positive' : 'text-negative'
+        }
+      >
+        ${Math.abs(value.getValue() as number).toLocaleString()}
+      </span>
+    ),
+    enableSorting: true,
+    sortingFn: (rowA, rowB) => {
+      const balanceA = Math.abs(rowA.getValue<number>('balance'));
+      const balanceB = Math.abs(rowB.getValue<number>('balance'));
 
-        // Compare the absolute values of the balances
-        if (balanceA < balanceB) return -1;
-        if (balanceA > balanceB) return 1;
-        return 0;
-      },
-    }
-  ),
+      // Compare the absolute values of the balances
+      if (balanceA < balanceB) return -1;
+      if (balanceA > balanceB) return 1;
+      return 0;
+    },
+  }),
 ];
 
 const UsersTable = () => {
-  const [data, setData] = useState<User[]>([]);
+  const { users, loading, error } = useUserContext();
   const [search, setSearch] = useState('');
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -93,12 +78,7 @@ const UsersTable = () => {
   });
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  // Get users data
-  useEffect(() => {
-    fetch(usersApiUrl)
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
+  const data = useMemo(() => users ?? [], [users]); // Memoize `data`
 
   // Filter users based on search input
   const filteredUsers = useMemo(
@@ -108,7 +88,7 @@ const UsersTable = () => {
           .toLowerCase()
           .includes(search.toLowerCase())
       ),
-    [data, search]
+    [data, search] // Dependencies
   );
 
   // Table configuration
@@ -126,6 +106,9 @@ const UsersTable = () => {
     },
     // autoResetPageIndex: false, // turn off page index reset when sorting or filtering
   });
+
+  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className={'text-textSecondary'}>Loading...</p>; // Handle the case when user data is still loading
 
   return (
     <div className=" bg-secondary rounded-lg">

@@ -3,7 +3,7 @@ import { Column } from '@tanstack/react-table';
 import { User } from '../../types/user';
 
 interface SortableHeaderProps {
-  column: Column<User, string | number>;
+  column: Column<User, string | number | undefined>;
   label: string;
 }
 
