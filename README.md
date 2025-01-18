@@ -1,5 +1,28 @@
 # FPFX Technologies - React Test
 
+## Run the project
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/rafaelleiv/fpfx-react-test.git
+   
+    cd fpfx-react-test
+    ```
+   
+2. Install the dependencies:
+
+   ```bash
+   npm install
+   ```
+   
+3. Start the app and the server concurrently:
+
+   ```bash
+    npm run start
+    ```
+   
+   
 ## Task Description
 
 You are required to develop and style a React application using TypeScript. The application should be built with reusable components to ensure modularity and maintainability.
