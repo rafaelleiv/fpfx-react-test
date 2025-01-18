@@ -19,7 +19,7 @@ import SortableHeader from './SortableTableHeader.tsx';
 const usersApiUrl = 'http://localhost:8000/users';
 
 const defaultPaginationSize = 10;
-const paginationSizes = [5, 10, 20];
+const paginationSizes = [5, 10, 15, 20];
 
 const columnHelper = createColumnHelper<User>();
 
@@ -146,8 +146,17 @@ const UsersTable = () => {
         <thead className="bg-primary text-textSecondary">
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id} className="p-4 text-[14px]">
+              {headerGroup.headers.map((header, index) => (
+                <th
+                  key={header.id}
+                  className={`pl-4 px-2 py-2 text-[14px] ${
+                    index === 0
+                      ? 'rounded-tl-md' // Top-left corner
+                      : index === headerGroup.headers.length - 1
+                        ? 'rounded-tr-md' // Top-right corner
+                        : ''
+                  }`}
+                >
                   {flexRender(
                     header.column.columnDef.header,
                     header.getContext()
@@ -168,7 +177,7 @@ const UsersTable = () => {
               }}
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="p-4 text-[14px]">
+                <td key={cell.id} className="px-4 py-2 text-[14px]">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
