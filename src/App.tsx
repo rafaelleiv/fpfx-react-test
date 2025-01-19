@@ -11,7 +11,7 @@ export default function App() {
         </section>
 
         {/* Overview Section */}
-        <section className="mt-8 bg-secondary p-4 rounded-lg shadow-md">
+        <section className="mt-4 sm:mt-8 bg-secondary p-4 rounded-lg shadow-md">
           <Overview />
         </section>
       </div>
