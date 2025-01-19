@@ -25,15 +25,14 @@
 
 The following scripts were added to ensure consistent code quality and formatting throughout the project:
 
-```json
-
-"lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
-"format": "prettier --write .",
-          
-lint:fix: Fixes ESLint issues automatically where possible.
-format: Uses Prettier to format the entire project according to the .prettierrc configuration.
 ```
-   Advantages
+"lint:fix"
+"format" 
+```
+- lint:fix: Fixes ESLint issues automatically where possible.
+- format: Uses Prettier to format the entire project according to the .prettierrc configuration.
+
+ ####  Advantages
  - Ensures a clean and readable codebase.
  - Prevents common coding errors and maintains consistent formatting across the project.
 
