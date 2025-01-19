@@ -3,18 +3,20 @@ import React from 'react';
 interface SummaryCardProps {
   title: string; // The title of the card
   value: number; // The value to display
-  valueClassName: string; // Class for styling (color)
+  textColor: string; // Class for styling (color)
+  containerStyle?: string; // Class for styling
 }
 
 const SummaryCard: React.FC<SummaryCardProps> = ({
   title,
   value,
-  valueClassName,
+  textColor,
+  containerStyle,
 }) => {
   return (
-    <div className="bg-primary px-3 py-2 rounded mb-2">
+    <div className={`bg-primary px-3 py-2 rounded mb-2 ${containerStyle}`}>
       <h3 className="text-textSecondary">{title}</h3>
-      <p className={`text-[20px] font-semibold ${valueClassName}`}>
+      <p className={`sm:text-[20px] font-semibold ${textColor}`}>
         ${Math.abs(value).toLocaleString()}
       </p>
     </div>

@@ -85,14 +85,21 @@ format: Uses Prettier to format the entire project according to the .prettierrc 
 Key Components
  - components/ui: Houses reusable UI components like LeaderBoard, UsersChart, PaginationButtons, and PanelHeader.
  - context: Manages global application state (e.g., UserContext for user data).
- - types: Defines TypeScript types and interfaces, ensuring type safety across the app.
+ - types: Defines TypeScript interfaces, ensuring type safety across the app.
 
 ### Suggested Improvements and Optimizations
 
-1. Responsive Design: Implement responsive design to ensure the application works well on various devices and screen sizes.
-2. Error Handling: Add error handling mechanisms to provide feedback to users in case of API failures or other issues.
-3. Unit Tests: Write unit tests for critical components and functions to ensure code quality and prevent regressions.
-4. Accessibility: Improve accessibility by adding ARIA attributes, focus management, and keyboard navigation support.
+1. Error Handling: Add error handling mechanisms to provide feedback to users in case of API failures or other issues.
+2. Unit Tests: Write unit tests for critical components and functions to ensure code quality and prevent regressions.
+3. Accessibility: Improve accessibility by adding ARIA attributes, focus management, and keyboard navigation support.
+
+### App views
+
+1. Mobile View  
+   <img src="public/doc/mobile-view.png" alt="Mobile View" width="300">
+
+2. Desktop View  
+   <img src="public/doc/desktop-view.png" alt="Desktop View" width="600">
 
 <br>
 

@@ -29,10 +29,11 @@ const UsersChart: React.FC<UsersChartProps> = ({ user }: UsersChartProps) => {
   const balance = user.balance ?? 0;
 
   return (
-    <div className="bg-secondary rounded-lg py-3 px-0">
-      {/* Chart */}
-      <div className="flex">
-        <div className="flex-1">
+    <div className="bg-secondary rounded-lg py-3">
+      {/* Wrapper for responsive layout */}
+      <div className="flex flex-col-reverse md:flex-row md:space-x-4">
+        {/* Chart Section */}
+        <div className="flex-1 w-full">
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={chartData}>
               <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 12 }} />
@@ -79,22 +80,25 @@ const UsersChart: React.FC<UsersChartProps> = ({ user }: UsersChartProps) => {
           </ResponsiveContainer>
         </div>
 
-        {/* Summary */}
-        <div className="ml-4 flex flex-col justify-center w-[220px]">
+        {/* Summary Section */}
+        <div className="flex flex-row md:flex-col justify-between sm:w-[220px] w-full mb-4 md:mb-0">
           <SummaryCard
             title="Profit"
             value={totalProfit}
-            valueClassName="text-positive"
+            textColor="text-positive"
+            containerStyle="flex-1 md:mb-2 md:mr-0 mr-2"
           />
           <SummaryCard
             title="Loss"
             value={totalLoss}
-            valueClassName="text-negative"
+            textColor="text-negative"
+            containerStyle="flex-1 md:mb-2 md:mr-0 mr-2"
           />
           <SummaryCard
             title="Balance"
             value={balance}
-            valueClassName="text-textBalance"
+            textColor="text-textBalance"
+            containerStyle="flex-1"
           />
         </div>
       </div>

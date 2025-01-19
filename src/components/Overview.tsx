@@ -20,7 +20,7 @@ const Overview = () => {
 
   return (
     <div className="flex flex-col space-y-3">
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center">
         {/* Header with image and title */}
         <PanelHeader iconSrc="/assets/chart-icon.svg" title="Overview" />
 

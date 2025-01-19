@@ -114,7 +114,11 @@ const UsersTable = () => {
 
   return (
     <div className=" bg-secondary rounded-lg">
-      <div className={'flex justify-between items-center mb-2'}>
+      <div
+        className={
+          'flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mb-2'
+        }
+      >
         {/* Pagination size options */}
         <PaginationSizeOptions
           pageSize={table.getState().pagination.pageSize}
@@ -127,71 +131,73 @@ const UsersTable = () => {
       </div>
 
       {/* Table */}
-      <table className="w-full text-left text-textSecondary">
-        <thead className="bg-primary text-textSecondary">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header, index) => (
-                <th
-                  key={header.id}
-                  className={`pl-4 px-2 py-2 ${
-                    index === 0
-                      ? 'rounded-tl-md'
-                      : index === headerGroup.headers.length - 1
-                        ? 'rounded-tr-md'
-                        : ''
-                  }`}
-                >
-                  {flexRender(
-                    header.column.columnDef.header,
-                    header.getContext()
-                  )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row, index) => (
-            <tr
-              key={row.id}
-              style={{
-                backgroundColor: index % 2 === 0 ? '#013440' : '#012F39', // striped rows
-                borderBottom: '1px solid #012030',
-                borderTop: '1px solid #012030',
-              }}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-4 py-2">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-textSecondary">
+          <thead className="bg-primary text-textSecondary">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header, index) => (
+                  <th
+                    key={header.id}
+                    className={`pl-4 px-2 py-2 ${
+                      index === 0
+                        ? 'rounded-tl-md'
+                        : index === headerGroup.headers.length - 1
+                          ? 'rounded-tr-md'
+                          : ''
+                    }`}
+                  >
+                    {flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row, index) => (
+              <tr
+                key={row.id}
+                style={{
+                  backgroundColor: index % 2 === 0 ? '#013440' : '#012F39', // striped rows
+                  borderBottom: '1px solid #012030',
+                  borderTop: '1px solid #012030',
+                }}
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id} className="px-4 py-2">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
 
-      {/* Pagination  */}
-      <div
-        className={
-          'flex flex-col gap-4 mt-3 sm:flex-row sm:justify-between sm:items-center'
-        }
-      >
-        <PaginationInfo
-          pageIndex={table.getState().pagination.pageIndex}
-          pageSize={table.getState().pagination.pageSize}
-          totalEntries={data.length}
-        />
-
-        <PaginationButtons
-          pageCount={table.getPageCount()}
-          currentPage={table.getState().pagination.pageIndex}
-          onPageChange={(pageIndex) =>
-            setPagination({ ...pagination, pageIndex })
+        {/* Pagination  */}
+        <div
+          className={
+            'flex flex-col gap-4 mt-3 sm:flex-row sm:justify-between sm:items-center'
           }
-          hasNextPage={table.getCanNextPage()}
-          hasPreviousPage={table.getCanPreviousPage()}
-        />
+        >
+          <PaginationInfo
+            pageIndex={table.getState().pagination.pageIndex}
+            pageSize={table.getState().pagination.pageSize}
+            totalEntries={data.length}
+          />
+
+          <PaginationButtons
+            pageCount={table.getPageCount()}
+            currentPage={table.getState().pagination.pageIndex}
+            onPageChange={(pageIndex) =>
+              setPagination({ ...pagination, pageIndex })
+            }
+            hasNextPage={table.getCanNextPage()}
+            hasPreviousPage={table.getCanPreviousPage()}
+          />
+        </div>
       </div>
     </div>
   );
