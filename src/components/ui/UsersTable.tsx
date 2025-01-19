@@ -9,13 +9,13 @@ import {
   getSortedRowModel,
   SortingState,
 } from '@tanstack/react-table';
-import { User } from '../../types/user';
-import UserSearch from './UserSearchInput.tsx';
-import PaginationInfo from './PaginationInfo.tsx';
-import PaginationButtons from './PaginationButtons.tsx';
-import PaginationSizeOptions from './PaginationSizeOptions.tsx';
-import SortableHeader from './SortableTableHeader.tsx';
-import { useUserContext } from '../../context/useUserContext.ts';
+import { User } from '@/types/user';
+import SortableHeader from '@/components/ui/SortableTableHeader.tsx';
+import { useUserContext } from '@/context/useUserContext.ts';
+import PaginationSizeOptions from '@/components/ui/PaginationSizeOptions.tsx';
+import UserSearch from '@/components/ui/UserSearchInput.tsx';
+import PaginationInfo from '@/components/ui/PaginationInfo.tsx';
+import PaginationButtons from '@/components/ui/PaginationButtons.tsx';
 
 // Default pagination size and options
 const defaultPaginationSize = 10;

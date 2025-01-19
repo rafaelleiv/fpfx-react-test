@@ -1,5 +1,5 @@
-import UsersTable from './ui/UsersTable.tsx';
-import PanelHeader from './ui/PanelHeader.tsx';
+import PanelHeader from '@/components/ui/PanelHeader.tsx';
+import UsersTable from '@/components/ui/UsersTable.tsx';
 
 const LeaderBoard = () => {
   return (

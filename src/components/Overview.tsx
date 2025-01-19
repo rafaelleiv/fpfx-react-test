@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import UsersChart from './ui/UsersChart.tsx';
-import UserSelector from './ui/UserSelector.tsx';
-import PanelHeader from './ui/PanelHeader.tsx';
-import { useUserContext } from '../context/useUserContext.ts';
+import { useUserContext } from '@/context/useUserContext.ts';
+import PanelHeader from '@/components/ui/PanelHeader.tsx';
+import UserSelector from '@/components/ui/UserSelector.tsx';
+import UsersChart from '@/components/ui/UsersChart.tsx';
 
 const Overview = () => {
   const { users, loading, error } = useUserContext();

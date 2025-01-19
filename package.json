@@ -8,6 +8,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint 'src/**/*.{ts,tsx,js,jsx}' --fix",
+    "format": "prettier --write .",
     "preview": "vite preview",
     "server": "json-server --watch data/users.json --port 8000"
   },
@@ -19,6 +21,7 @@
     "recharts": "^2.15.0"
   },
   "devDependencies": {
+    "@types/node": "^22.10.7",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

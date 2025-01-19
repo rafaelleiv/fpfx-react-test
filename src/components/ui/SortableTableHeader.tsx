@@ -1,6 +1,6 @@
 import React from 'react';
 import { Column } from '@tanstack/react-table';
-import { User } from '../../types/user';
+import { User } from '@/types/user';
 
 interface SortableHeaderProps {
   column: Column<User, string | number | undefined>;

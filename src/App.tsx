@@ -1,5 +1,5 @@
-import LeaderBoard from './components/LeaderBoard.tsx';
-import Overview from './components/Overview.tsx';
+import Overview from '@/components/Overview.tsx';
+import LeaderBoard from '@/components/LeaderBoard.tsx';
 
 export default function App() {
   return (

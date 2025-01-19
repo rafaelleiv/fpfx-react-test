@@ -3,7 +3,7 @@ import React from 'react';
 interface SummaryCardProps {
   title: string; // The title of the card
   value: number; // The value to display
-  valueClassName: string; // Class for styling the value (color)
+  valueClassName: string; // Class for styling (color)
 }
 
 const SummaryCard: React.FC<SummaryCardProps> = ({

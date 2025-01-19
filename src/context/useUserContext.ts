@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { UserContext } from './UserContext.tsx';
+import { UserContext } from '@/context/UserContext.tsx';
 
 // Custom hook to use the UserContext
 export const useUserContext = () => {

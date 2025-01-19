@@ -8,8 +8,8 @@ import {
   YAxis,
   Legend,
 } from 'recharts';
-import SummaryCard from './SummaryCard.tsx';
-import { User } from '../../types/user';
+import SummaryCard from '@/components/ui/SummaryCard.tsx';
+import { User } from '@/types/user';
 
 interface UsersChartProps {
   user: User;
