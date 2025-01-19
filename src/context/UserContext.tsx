@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { User } from '../types/user';
 
+// API URL
 const usersApiUrl = 'http://localhost:8000/users';
 
 interface UserContextProps {
@@ -25,14 +26,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         const response = await fetch(usersApiUrl);
 
-        // Check response status and handle the error without `throw`
+        // Check response status
         if (!response.ok) {
           setError('Failed to fetch users');
           return; // Exit the function early if the response is not OK
         }
 
         const data = await response.json();
-        // calculate the total profit and loss for each user
+        // calculate the total profit, loss and balance for each user
         data.forEach((user: User) => {
           user.totalProfit = user.profit.reduce(
             (acc: number, val: number) => acc + val,

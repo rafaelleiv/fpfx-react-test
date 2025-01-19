@@ -17,6 +17,7 @@ export default {
         sans: ['Open Sans', 'ui-sans-serif', 'system-ui'],
       },
       fontSize: {
+        base: '14px',
         'h-panel': ['20px', '27.24px'],
       },
       textUnderlinePosition: {

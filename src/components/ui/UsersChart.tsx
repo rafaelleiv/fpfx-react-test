@@ -1,4 +1,3 @@
-import { User } from '../../types/user';
 import React from 'react';
 import {
   Line,
@@ -9,6 +8,8 @@ import {
   YAxis,
   Legend,
 } from 'recharts';
+import SummaryCard from './SummaryCard.tsx';
+import { User } from '../../types/user';
 
 interface UsersChartProps {
   user: User;
@@ -80,30 +81,21 @@ const UsersChart: React.FC<UsersChartProps> = ({ user }: UsersChartProps) => {
 
         {/* Summary */}
         <div className="ml-4 flex flex-col justify-center w-[220px]">
-          <div className="bg-primary px-3 py-2 rounded mb-2">
-            <h3 className="text-sm text-textSecondary mb-1 text-[14px]">
-              Profit
-            </h3>
-            <p className="text-md font-bold text-positive">
-              ${totalProfit.toLocaleString()}
-            </p>
-          </div>
-          <div className="bg-primary px-3 py-2 rounded mb-2">
-            <h3 className="text-sm text-textSecondary mb-1 text-[14px]">
-              Loss
-            </h3>
-            <p className="text-lg font-bold text-negative">
-              ${Math.abs(totalLoss).toLocaleString()}
-            </p>
-          </div>
-          <div className="bg-primary px-3 py-2 rounded">
-            <h3 className="text-sm text-textSecondary mb-1 text-[12px]">
-              Balance
-            </h3>
-            <p className={`text-lg font-bold text-textBalance`}>
-              ${Math.abs(balance).toLocaleString()}
-            </p>
-          </div>
+          <SummaryCard
+            title="Profit"
+            value={totalProfit}
+            valueClassName="text-positive"
+          />
+          <SummaryCard
+            title="Loss"
+            value={totalLoss}
+            valueClassName="text-negative"
+          />
+          <SummaryCard
+            title="Balance"
+            value={balance}
+            valueClassName="text-textBalance"
+          />
         </div>
       </div>
     </div>

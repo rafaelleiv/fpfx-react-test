@@ -2,7 +2,7 @@ import React from 'react';
 
 interface PaginationButtonsProps {
   pageCount: number; // Total number of pages
-  currentPage: number; // Current active page (zero-indexed)
+  currentPage: number; // Current active page
   onPageChange: (pageIndex: number) => void; // Callback for changing pages
   hasNextPage: boolean; // Whether the next page exists
   hasPreviousPage: boolean; // Whether the previous page exists
@@ -21,7 +21,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={!hasPreviousPage}
-        className={`px-3 py-1 rounded text-[14px] text-textSecondary ${
+        className={`px-3 py-1 rounded text-textSecondary ${
           hasPreviousPage
             ? 'bg-[#013440] text-textSecondary'
             : 'bg-gray-700 text-gray-400 cursor-not-allowed'
@@ -35,7 +35,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
         <button
           key={index}
           onClick={() => onPageChange(index)}
-          className={`px-3 py-1 rounded text-[14px] text-textSecondary ${
+          className={`px-3 py-1 rounded text-textSecondary ${
             currentPage === index
               ? 'bg-[#012030] text-textSecondary'
               : 'bg-[#013440] text-textPrimary'
@@ -49,7 +49,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={!hasNextPage}
-        className={`px-3 py-1 rounded text-[14px] text-textSecondary ${
+        className={`px-3 py-1 rounded text-textSecondary ${
           hasNextPage
             ? 'bg-[#013440] text-textSecondary'
             : 'bg-gray-700 text-gray-400 cursor-not-allowed'

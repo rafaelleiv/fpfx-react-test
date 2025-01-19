@@ -20,7 +20,7 @@ const PaginationSizeOptions: React.FC<PaginationSizeOptionsProps> = ({
         id="pageSize"
         value={pageSize}
         onChange={(e) => setPageSize(Number(e.target.value))}
-        className="bg-primary text-textSecondary pl-1 pr-2 py-2 rounded font-semibold text-[14px] focus:outline-none"
+        className="bg-primary text-textSecondary pl-1 pr-2 py-2 rounded font-semibold focus:outline-none"
       >
         {sizeOptions.map((size) => (
           <option key={size} value={size}>

@@ -27,7 +27,7 @@ const UserSearch = ({
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-primary text-textSecondary placeholder-textSecondary rounded-md pl-10 pr-4 py-2 text-[14px] focus:outline-none "
+        className="w-full bg-primary text-textSecondary placeholder-textSecondary rounded-md pl-9 pr-4 py-2 focus:outline-none "
       />
     </div>
   );

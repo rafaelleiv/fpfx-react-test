@@ -16,7 +16,7 @@ const PaginationInfo: React.FC<PaginationInfoProps> = ({
   const endIndex = Math.min(startIndex + pageSize - 1, totalEntries);
 
   return (
-    <div className="text-textSecondary text-sm">
+    <div className="text-textSecondary">
       {`Showing ${startIndex} to ${endIndex} of ${totalEntries} entries`}
     </div>
   );

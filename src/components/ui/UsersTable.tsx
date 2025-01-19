@@ -17,11 +17,13 @@ import PaginationSizeOptions from './PaginationSizeOptions.tsx';
 import SortableHeader from './SortableTableHeader.tsx';
 import { useUserContext } from '../../context/useUserContext.ts';
 
+// Default pagination size and options
 const defaultPaginationSize = 10;
 const paginationSizes = [5, 10, 15, 20];
 
 const columnHelper = createColumnHelper<User>();
 
+// Define columns
 const columns = [
   columnHelper.accessor((row) => `${row.name} ${row.lastname}`, {
     header: ({ column }) => <SortableHeader column={column} label="User" />,
@@ -88,7 +90,7 @@ const UsersTable = () => {
           .toLowerCase()
           .includes(search.toLowerCase())
       ),
-    [data, search] // Dependencies
+    [data, search]
   );
 
   // Table configuration
@@ -108,7 +110,7 @@ const UsersTable = () => {
   });
 
   if (error) return <p>Error: {error}</p>;
-  if (loading) return <p className={'text-textSecondary'}>Loading...</p>; // Handle the case when user data is still loading
+  if (loading) return <p className={'text-textSecondary'}>Loading...</p>;
 
   return (
     <div className=" bg-secondary rounded-lg">
@@ -132,11 +134,11 @@ const UsersTable = () => {
               {headerGroup.headers.map((header, index) => (
                 <th
                   key={header.id}
-                  className={`pl-4 px-2 py-2 text-[14px] ${
+                  className={`pl-4 px-2 py-2 ${
                     index === 0
-                      ? 'rounded-tl-md' // Top-left corner
+                      ? 'rounded-tl-md'
                       : index === headerGroup.headers.length - 1
-                        ? 'rounded-tr-md' // Top-right corner
+                        ? 'rounded-tr-md'
                         : ''
                   }`}
                 >
@@ -160,7 +162,7 @@ const UsersTable = () => {
               }}
             >
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-4 py-2 text-[14px]">
+                <td key={cell.id} className="px-4 py-2">
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}
@@ -170,7 +172,11 @@ const UsersTable = () => {
       </table>
 
       {/* Pagination  */}
-      <div className={'flex justify-between items-center mt-3'}>
+      <div
+        className={
+          'flex flex-col gap-4 mt-3 sm:flex-row sm:justify-between sm:items-center'
+        }
+      >
         <PaginationInfo
           pageIndex={table.getState().pagination.pageIndex}
           pageSize={table.getState().pagination.pageSize}
